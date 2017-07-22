@@ -29,7 +29,7 @@ The following should be repeated for each new client/user for whom you wish to g
 
 You will then find a file like the following that you should provide to the individual who will be connecting to your VPN.
 
-    ~client-configs/files/client-name.ovpn
+    ~/client-configs/files/client-name.ovpn
 
 
 # Revoke client certificate

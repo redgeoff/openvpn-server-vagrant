@@ -9,4 +9,4 @@ fi
 
 cd ~/openvpn-ca
 source vars
-yes "" | ./build-key $name
+/vagrant/build-key.sh $name
