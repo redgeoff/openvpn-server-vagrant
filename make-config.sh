@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-# First argument: Client identifier
-
 name=$1
+
+if [ "$name" = "" ]; then
+  echo "Usage: make-config.sh name"
+  exit;
+fi
 
 KEY_DIR=~/openvpn-ca/keys
 OUTPUT_DIR=~/client-configs/files

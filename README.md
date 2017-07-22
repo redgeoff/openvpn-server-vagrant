@@ -21,13 +21,13 @@ Spin up an OpenVPN Server
     $ vagrant ssh
 
 
-# Generate a client config
+# Add a client
 
 The following should be repeated for each new client/user for whom you wish to grant access to your VPN. Replace client-name with a unique name.
 
-    $ sudo /vagrant/make-config.sh client-name
+    $ sudo /vagrant/add-config.sh client-name
 
-You will then find a file like the following that you should provide to the individual who will be connecting to your VPN.
+You will then find a file like the following that you should provide to the individual who will be connecting to your VPN. This ovpn file can then be used with Tunnelblick (OS X), OpenVPN (Linux, iOS, Android and Windows). 
 
     ~/client-configs/files/client-name.ovpn
 

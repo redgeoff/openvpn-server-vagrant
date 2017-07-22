@@ -39,9 +39,6 @@ $sd/build-key-server.sh
 ./build-dh
 openvpn --genkey --secret keys/ta.key
 
-# Generate a client certificate and key pair
-$sd/generate-client-certificate.sh client1
-
 # Copy the files to the OpenVPN directory
 cd ~/openvpn-ca/keys
 cp ca.crt ca.key server.crt server.key ta.key dh2048.pem /etc/openvpn

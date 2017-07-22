@@ -3,7 +3,7 @@
 name=$1
 
 if [ "$name" = "" ]; then
-  echo "Usage: generate-client-certificate name"
+  echo "Usage: generate-client-certificate.sh name"
   exit;
 fi
 
