@@ -74,6 +74,7 @@ sed -i "s/cert client.crt/#cert client.crt/" ~/client-configs/base.conf
 sed -i "s/key client.key/#key client.key/" ~/client-configs/base.conf
 echo "cipher AES-128-CBC" >> ~/client-configs/base.conf
 echo "auth SHA256" >> ~/client-configs/base.conf
+echo "key-direction 1" >> ~/client-configs/base.conf
 echo "#script-security 2" >> ~/client-configs/base.conf
 echo "#up /etc/openvpn/update-resolv-conf" >> ~/client-configs/base.conf
 echo "#down /etc/openvpn/update-resolv-conf" >> ~/client-configs/base.conf
