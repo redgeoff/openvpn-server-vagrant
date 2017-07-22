@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Change to script directory
+sd=`dirname $0`
+cd $sd
+
 name=$1
 
 if [ "$name" = "" ]; then
@@ -9,4 +13,4 @@ fi
 
 cd ~/openvpn-ca
 source vars
-/vagrant/build-key.sh $name
+$sd/build-key.sh $name

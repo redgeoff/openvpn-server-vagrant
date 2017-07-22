@@ -12,7 +12,7 @@ if [ "$name" = "" ]; then
 fi
 
 # Generate a client certificate and key pair
-./generate-client-certificate.sh $name
+$sd/generate-client-certificate.sh $name
 
 # Make config
-./make-config.sh $name
+$sd/make-config.sh $name
