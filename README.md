@@ -25,7 +25,8 @@ Spin up an OpenVPN Server
 
 The following should be repeated for each new client/user for whom you wish to grant access to your VPN. Replace client-name with a unique name.
 
-    $ sudo /vagrant/add-config.sh client-name
+    $ sudo su -
+    $ /vagrant/add-config.sh client-name
 
 You will then find a file like the following that you should provide to the individual who will be connecting to your VPN. This ovpn file can then be used with Tunnelblick (OS X), OpenVPN (Linux, iOS, Android and Windows).
 
@@ -36,7 +37,8 @@ You will then find a file like the following that you should provide to the indi
 
 If you ever need to revoke access, simply execute:
 
-    $ sudo /vagrant/revoke-full.sh client-name
+    $ sudo su -
+    $ /vagrant/revoke-full.sh client-name
 
 
 ## Extra Info
