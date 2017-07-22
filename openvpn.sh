@@ -50,9 +50,6 @@ sed -i "s/;cipher AES-128-CBC/cipher AES-128-CBC\nauth SHA256/" /etc/openvpn/ser
 sed -i "s/;user nobody/user nobody/" /etc/openvpn/server.conf
 sed -i "s/;group nogroup/group nogroup/" /etc/openvpn/server.conf
 
-# Configure the server to check the client revocation list
-echo "crl-verify crl.pem" >> /etc/openvpn/server.conf
-
 # Allow IP forwarding
 sed -i "s/#net.ipv4.ip_forward/net.ipv4.ip_forward/" /etc/sysctl.conf
 sysctl -p
