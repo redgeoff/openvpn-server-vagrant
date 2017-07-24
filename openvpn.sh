@@ -54,6 +54,13 @@ sed -i "s/;group nogroup/group nogroup/" /etc/openvpn/server.conf
 sed -i "s/#net.ipv4.ip_forward/net.ipv4.ip_forward/" /etc/sysctl.conf
 sysctl -p
 
+# Edit iptables rules to allow for forwarding
+iptables -t nat -A POSTROUTING -o tun+ -j MASQUERADE
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+
+# Make iptables rules persistent across reboots
+iptables-save > /etc/iptables/rules.v4
+
 # Start and enable the OpenVPN service
 systemctl start openvpn@server
 systemctl enable openvpn@server

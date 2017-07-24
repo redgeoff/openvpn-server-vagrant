@@ -21,6 +21,19 @@ Spin up an OpenVPN Server
     $ vagrant ssh
 
 
+# Add a route to a subnet
+
+Routes must be added to the server so that you clients know which traffic to route to the VPN Server. The following process should be repeated for each subnet in your network.
+
+Edit `/etc/openvpn/server.conf` and add something like the following, where `172.31.26.0` is your network and 255.255.255.0 is the netmask.
+
+    push "route 172.31.26.0 255.255.255.0"
+
+Then restart the VPN Server:
+
+    $ sudo systemctl restart openvpn@server
+
+
 ## Add a client
 
 The following should be repeated for each new client/user for whom you wish to grant access to your VPN. Replace client-name with a unique name.
