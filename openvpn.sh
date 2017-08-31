@@ -54,6 +54,9 @@ sed -i "s/;group nogroup/group nogroup/" /etc/openvpn/server.conf
 sed -i "s/#net.ipv4.ip_forward/net.ipv4.ip_forward/" /etc/sysctl.conf
 sysctl -p
 
+# Install iptables-persistent so that rules can persist across reboots
+apt-get -y iptables-persistent
+
 # Edit iptables rules to allow for forwarding
 iptables -t nat -A POSTROUTING -o tun+ -j MASQUERADE
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
