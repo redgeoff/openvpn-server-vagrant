@@ -3,6 +3,9 @@
 # Change to script directory
 sd=`dirname $0`
 cd $sd
+# if you ran the script from its own directory you actually just got '.'
+# so capture the abs path to wd now
+sd=`pwd`
 
 # Make sure config file exists
 if [ ! -f ./config.sh ]; then
