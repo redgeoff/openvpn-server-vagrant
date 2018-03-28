@@ -3,6 +3,7 @@
 # Change to script directory
 sd=`dirname $0`
 cd $sd
+sd=`pwd`
 
 name=$1
 
