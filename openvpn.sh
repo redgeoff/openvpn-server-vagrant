@@ -15,6 +15,7 @@ fi
 
 # Load config
 source ./config.sh
+source ./interfaces.sh
 
 # Install OpenVPN and expect
 apt-get -y install openvpn easy-rsa expect
@@ -64,7 +65,7 @@ apt-get install -y iptables-persistent
 
 # Edit iptables rules to allow for forwarding
 iptables -t nat -A POSTROUTING -o tun+ -j MASQUERADE
-iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+iptables -t nat -A POSTROUTING -o $VPNDEVICE -j MASQUERADE
 
 # Make iptables rules persistent across reboots
 iptables-save > /etc/iptables/rules.v4
