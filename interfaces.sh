@@ -3,22 +3,19 @@
 DEVICES=$(ifconfig -s | grep -v "Iface\|lo\|tun0" | cut -d " " -f 1)
 NUMDEVICES=$(ifconfig -s | wc -l)
 VPNDEVICE=""
-ETH0=false
 
 # If we have an eth0 device, use that to maintain current functionality.
 if ifconfig -s | grep -q eth0
 then
-  ETH0=true
   export VPNDEVICE="eth0"
-fi
 
 # If we hit newer systemd/hypervisor combination, it won't be eth0, but there
 # will probably be only one obvious device to use: not the loop back, and not
 # the tunnel. Use it instead.
-if [ $NUMDEVICES -eq 4 ] && [ !$ETH0 ]
-then
+elif [ $NUMDEVICES -eq 3 ] 
+  then
   # no eth0 device, but only one option, use it.
-  export VPNDEVICE=$(ifconfig -s | tail -n 3 | grep -v "lo\|tun0" | cut -d " " -f 1)
+  export VPNDEVICE=$(ifconfig -s | tail -n 2 | cut -d " " -f 1 | grep -v "lo\|tun0")
 
 else
   # If we end up on a server that has multiple devices and no eth0, just ask.
