@@ -17,12 +17,12 @@ elif [ $NUMDEVICES -eq 3 ]
   # no eth0 device, but only one option, use it.
   export VPNDEVICE=$(ifconfig -s | tail -n 2 | cut -d " " -f 1 | grep -v "lo\|tun0")
 
+# If we end up on a server that has multiple devices and no eth0, just ask.
+# This is fairly common, Docker containers, wifi cards, dual nics, etc.
 else
-  # If we end up on a server that has multiple devices and no eth0, just ask.
-  # This is fairly common, Docker containers, wifi cards, dual nics, etc.
   echo "There are multiple network devices on this server:"
   echo ""
-  ifconfig -s | grep -v "Iface\|lo\|tun0" | cut -d " " -f 1
+  ifconfig -s | cut -d " " -f 1 | grep -v "Iface\|lo\|tun0"
   echo ""
   echo "Please type the name of the device you'd like to use"
   read VPNDEVICE
