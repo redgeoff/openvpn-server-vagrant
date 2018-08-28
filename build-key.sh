@@ -7,25 +7,7 @@
 
 set name [lindex $argv 0];
 
-# Get the password for the VPN account
-stty -echo
-send_user -- "VPN User Password: "
-expect_user -re "(.*)\n"
-send_user "\n"
-stty echo
-set pass $expect_out(1,string)
-
-# Confirm the password for the VPN account
-stty -echo
-send_user -- "Confirm VPN User Password: "
-expect_user -re "(.*)\n"
-send_user "\n"
-stty echo
-set confirm_pass $expect_out(1,string)
-
-spawn ./build-key-pass $name
-send -- "$pass\r"
-send -- "$confirm_pass\r"
+spawn ./build-key $name
 expect "Country Name"
 send "\n"
 expect "State or Province Name"
