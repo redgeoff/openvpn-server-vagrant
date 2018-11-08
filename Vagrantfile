@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64-vagrant.box"
+  config.vm.box = "https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-vagrant.box"
 
   # Use a private network so that we don't have to worry about forwarding ports
   config.vm.network "private_network", ip: "192.168.50.11"
