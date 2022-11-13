@@ -39,7 +39,7 @@ Then restart the VPN Server:
 The following should be repeated for each new client/user for whom you wish to grant access to your VPN. Replace client-name with a unique name.
 
     $ sudo su -
-    $ /vagrant/add-config.sh client-name
+    $ /vagrant/add-client.sh client-name
 
 You will then find a file like the following that you should provide to the individual who will be connecting to your VPN. This ovpn file can then be used with Tunnelblick (OS X), OpenVPN (Linux, iOS, Android and Windows).
 

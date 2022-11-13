@@ -3,14 +3,14 @@
 name=$1
 
 if [ "$name" = "" ]; then
-  echo "Usage: make-config.sh name"
+  echo "Usage: revoke-full.sh name"
   exit;
 fi
 
 cd ~/openvpn-ca
 source vars
 
-# And error ending in "ending in error 23" is expected
+# An error ending in "ending in error 23" is expected
 ./revoke-full $name
 
 # Install the revocation files

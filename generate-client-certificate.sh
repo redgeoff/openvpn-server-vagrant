@@ -14,4 +14,9 @@ fi
 
 cd ~/openvpn-ca
 source vars
-$sd/build-key.sh $name
+yes "" | ./easyrsa gen-req ${name} nopass
+cp pki/private/${name}.key ~/client-configs/keys/
+yes "yes" | ./easyrsa sign-req client ${name}
+cp /root/openvpn-ca/pki/issued/${name}.crt ~/client-configs/keys/
+cp /etc/openvpn/server/ta.key ~/client-configs/keys/
+cp /etc/openvpn/server/ca.crt ~/client-configs/keys/

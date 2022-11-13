@@ -7,7 +7,7 @@ if [ "$name" = "" ]; then
   exit;
 fi
 
-KEY_DIR=~/openvpn-ca/keys
+KEY_DIR=~/client-configs/keys
 OUTPUT_DIR=~/client-configs/files
 BASE_CONFIG=~/client-configs/base.conf
 
