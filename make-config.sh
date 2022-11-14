@@ -18,9 +18,9 @@ cat ${BASE_CONFIG} \
     ${KEY_DIR}/${name}.crt \
     <(echo -e '</cert>\n<key>') \
     ${KEY_DIR}/${name}.key \
-    <(echo -e '</key>\n<tls-auth>') \
+    <(echo -e '</key>\n<tls-crypt>') \
     ${KEY_DIR}/ta.key \
-    <(echo -e '</tls-auth>') \
+    <(echo -e '</tls-crypt>') \
     > ${OUTPUT_DIR}/${name}.ovpn
 
 # sed -i "s/group nogroup/group nobody/" ${OUTPUT_DIR}/${name}.ovpn
