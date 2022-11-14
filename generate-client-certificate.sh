@@ -13,7 +13,6 @@ if [ "$name" = "" ]; then
 fi
 
 cd ~/openvpn-ca
-source vars
 yes "" | ./easyrsa gen-req ${name} nopass
 cp pki/private/${name}.key ~/client-configs/keys/
 yes "yes" | ./easyrsa sign-req client ${name}
