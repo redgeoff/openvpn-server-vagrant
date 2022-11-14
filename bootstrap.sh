@@ -2,4 +2,4 @@
 
 /vagrant/ubuntu.sh
 
-#/vagrant/openvpn.sh
+/vagrant/openvpn.sh

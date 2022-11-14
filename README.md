@@ -12,7 +12,6 @@ Spin up an OpenVPN Server
 
 ## Set up
 
-    Edit /etc/hosts locally and add `192.168.50.11 vpn.dev`
     $ git clone https://github.com/redgeoff/openvpn-server-vagrant.git
     $ cd openvpn-server-vagrant
     $ cp config-default.sh config.sh
@@ -20,6 +19,13 @@ Spin up an OpenVPN Server
     $ vagrant up
     $ vagrant ssh
 
+You can then perform a sanity test with a connection from a VPN client with:
+
+    $ sudo su -
+    $ /vagrant/add-client.sh test-client
+    $ cp ~/client-configs/files/test-client.ovpn /vagrant
+    On the host, double click `test-client.ovpn` to load it into Tunnelblick
+    Use Tunnelblick to connect to the VPN server
 
 # Add a route to a subnet
 
