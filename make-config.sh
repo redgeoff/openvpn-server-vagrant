@@ -7,7 +7,7 @@ if [ "$name" = "" ]; then
   exit;
 fi
 
-KEY_DIR=~/openvpn-ca/keys
+KEY_DIR=~/client-configs/keys
 OUTPUT_DIR=~/client-configs/files
 BASE_CONFIG=~/client-configs/base.conf
 
@@ -18,9 +18,9 @@ cat ${BASE_CONFIG} \
     ${KEY_DIR}/${name}.crt \
     <(echo -e '</cert>\n<key>') \
     ${KEY_DIR}/${name}.key \
-    <(echo -e '</key>\n<tls-auth>') \
+    <(echo -e '</key>\n<tls-crypt>') \
     ${KEY_DIR}/ta.key \
-    <(echo -e '</tls-auth>') \
+    <(echo -e '</tls-crypt>') \
     > ${OUTPUT_DIR}/${name}.ovpn
 
 # sed -i "s/group nogroup/group nobody/" ${OUTPUT_DIR}/${name}.ovpn

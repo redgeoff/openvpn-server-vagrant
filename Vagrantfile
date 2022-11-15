@@ -1,9 +1,9 @@
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-vagrant.box"
+  config.vm.box = "bento/ubuntu-22.04"
 
   # Use a private network so that we don't have to worry about forwarding ports
-  config.vm.network "private_network", ip: "192.168.50.11"
+  config.vm.network "private_network", ip: "192.168.56.11"
 
   config.vm.provider "virtualbox" do |v|
     v.memory = 1024

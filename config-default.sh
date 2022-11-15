@@ -7,4 +7,4 @@ KEY_ORG="Fort-Funston"
 KEY_EMAIL="me@myhost.mydomain"
 KEY_OU="MyOrganizationalUnit"
 
-PUBLIC_IP="192.168.50.11"
+PUBLIC_IP="192.168.56.11"

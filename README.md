@@ -12,7 +12,6 @@ Spin up an OpenVPN Server
 
 ## Set up
 
-    Edit /etc/hosts locally and add `192.168.50.11 vpn.dev`
     $ git clone https://github.com/redgeoff/openvpn-server-vagrant.git
     $ cd openvpn-server-vagrant
     $ cp config-default.sh config.sh
@@ -20,6 +19,13 @@ Spin up an OpenVPN Server
     $ vagrant up
     $ vagrant ssh
 
+You can then perform a sanity test with a connection from a VPN client with:
+
+    $ sudo su -
+    $ /vagrant/add-client.sh test-client
+    $ cp ~/client-configs/files/test-client.ovpn /vagrant
+    On the host, double click `test-client.ovpn` to load it into Tunnelblick
+    Use Tunnelblick to connect to the VPN server
 
 # Add a route to a subnet
 
@@ -39,7 +45,7 @@ Then restart the VPN Server:
 The following should be repeated for each new client/user for whom you wish to grant access to your VPN. Replace client-name with a unique name.
 
     $ sudo su -
-    $ /vagrant/add-config.sh client-name
+    $ /vagrant/add-client.sh client-name
 
 You will then find a file like the following that you should provide to the individual who will be connecting to your VPN. This ovpn file can then be used with Tunnelblick (OS X), OpenVPN (Linux, iOS, Android and Windows).
 
@@ -57,4 +63,4 @@ If you ever need to revoke access, simply execute:
 ## Extra Info
 
 * See [Using a VPN Server to Connect to Your AWS VPC for Just the Cost of an EC2 Nano Instance](https://redgeoff.com/posts/running-a-free-vpn-server-on-aws/)
-* See [How To Set Up an OpenVPN Server on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-ubuntu-16-04)
+* See [How To Set Up and Configure an OpenVPN Server on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-ubuntu-20-04)
