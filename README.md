@@ -62,5 +62,5 @@ If you ever need to revoke access, simply execute:
 
 ## Extra Info
 
-* See [Using a VPN Server to Connect to Your AWS VPC for Just the Cost of an EC2 Nano Instance](https://redgeoff.com/posts/running-a-free-vpn-server-on-aws/)
+* See [Run a Free VPN Server on AWS](https://redgeoff.com/posts/free-vpn-aws-2022)
 * See [How To Set Up and Configure an OpenVPN Server on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-ubuntu-20-04)
