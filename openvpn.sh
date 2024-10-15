@@ -59,7 +59,7 @@ cp pki/ta.key /etc/openvpn/
 cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /etc/openvpn/server.conf
 
 # Adjust the OpenVPN configuration
-sed -i "s/^;tls-crypt ta.key.*$/tls-crypt ta.key 0/" /etc/openvpn/server/server.conf
+sed -i "s/^;tls-crypt ta.key.*$/tls-crypt ta.key 0/" /etc/openvpn/server.conf
 sed -i "s/cipher AES-256-CBC/cipher AES-256-GCM\nauth SHA256/" /etc/openvpn/server.conf
 sed -i "s/dh dh2048.pem/;dh dh2048.pem\ndh none/" /etc/openvpn/server.conf
 # sed -i "s/;user openvpn/user openvpn/" /etc/openvpn/server.conf

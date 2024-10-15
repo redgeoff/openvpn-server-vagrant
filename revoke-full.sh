@@ -17,7 +17,7 @@ yes "yes" | ./easyrsa revoke $name
 cp pki/crl.pem /etc/openvpn/server
 
 # Configure the server to check the client revocation list. This should only be done once
-if [ $(grep -R 'crl-verify crl.pem' /etc/openvpn/server/server.conf | wc -l) -eq 0 ]; then
-  echo -e "\ncrl-verify crl.pem" >> /etc/openvpn/server/server.conf
+if [ $(grep -R 'crl-verify crl.pem' /etc/openvpn/server.conf | wc -l) -eq 0 ]; then
+  echo -e "\ncrl-verify crl.pem" >> /etc/openvpn/server.conf
   systemctl restart openvpn-server@server.service
 fi
