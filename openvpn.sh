@@ -93,7 +93,7 @@ sed -i "s/ca ca.crt/;ca ca.crt/" ~/client-configs/base.conf
 sed -i "s/cert client.crt/;cert client.crt/" ~/client-configs/base.conf
 sed -i "s/key client.key/;key client.key/" ~/client-configs/base.conf
 sed -i "s/tls-auth ta.key 1/;tls-auth ta.key 1/" ~/client-configs/base.conf
-sed -i "s/cipher AES-256-CBC/cipher AES-256-GCM/" ~/client-configs/base.conf
+# sed -i "s/cipher AES-256-CBC/cipher AES-256-GCM/" ~/client-configs/base.conf
 echo "auth SHA256" >> ~/client-configs/base.conf
 echo "key-direction 1" >> ~/client-configs/base.conf
 echo ";script-security 2" >> ~/client-configs/base.conf
