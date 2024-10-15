@@ -59,11 +59,11 @@ cp pki/ta.key /etc/openvpn/server/
 cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /etc/openvpn/server/server.conf
 
 # Adjust the OpenVPN configuration
-sed -i "s/tls-auth ta.key 0/tls-crypt ta.key/" /etc/openvpn/server/server.conf
-sed -i "s/cipher AES-256-CBC/cipher AES-256-GCM\nauth SHA256/" /etc/openvpn/server/server.conf
+sed -i "s/^;tls-auth ta.key.*$/tls-crypt ta.key 0/" /etc/openvpn/server/server.conf
+# sed -i "s/cipher AES-256-CBC/cipher AES-256-GCM\nauth SHA256/" /etc/openvpn/server/server.conf
 sed -i "s/dh dh2048.pem/;dh dh2048.pem\ndh none/" /etc/openvpn/server/server.conf
-sed -i "s/;user nobody/user nobody/" /etc/openvpn/server/server.conf
-sed -i "s/;group nobody/group nogroup/" /etc/openvpn/server/server.conf
+# sed -i "s/;user openvpn/user openvpn/" /etc/openvpn/server/server.conf
+# sed -i "s/;group openvpn/group openvpn/" /etc/openvpn/server/server.conf
 
 # Allow IP forwarding
 sed -i "s/#net.ipv4.ip_forward/net.ipv4.ip_forward/" /etc/sysctl.conf
@@ -87,13 +87,13 @@ chmod -R 700 ~/client-configs
 mkdir -p ~/client-configs/files
 cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf ~/client-configs/base.conf
 sed -i "s/remote my-server-1 1194/remote ${PUBLIC_IP} 1194/" ~/client-configs/base.conf
-sed -i "s/;user nobody/user nobody/" ~/client-configs/base.conf
-sed -i "s/;group nobody/group nogroup/" ~/client-configs/base.conf
+# sed -i "s/;user openvpn/user openvpn/" ~/client-configs/base.conf
+# sed -i "s/;group openvpn/group openvpn/" ~/client-configs/base.conf
 sed -i "s/ca ca.crt/;ca ca.crt/" ~/client-configs/base.conf
 sed -i "s/cert client.crt/;cert client.crt/" ~/client-configs/base.conf
 sed -i "s/key client.key/;key client.key/" ~/client-configs/base.conf
 sed -i "s/tls-auth ta.key 1/;tls-auth ta.key 1/" ~/client-configs/base.conf
-sed -i "s/cipher AES-256-CBC/cipher AES-256-GCM/" ~/client-configs/base.conf
+# sed -i "s/cipher AES-256-CBC/cipher AES-256-GCM/" ~/client-configs/base.conf
 echo "auth SHA256" >> ~/client-configs/base.conf
 echo "key-direction 1" >> ~/client-configs/base.conf
 echo ";script-security 2" >> ~/client-configs/base.conf
