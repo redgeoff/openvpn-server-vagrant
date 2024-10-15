@@ -43,27 +43,27 @@ yes "" | ./easyrsa build-ca nopass
 
 # Create the server certificate
 yes "" | ./easyrsa gen-req server nopass
-cp pki/private/server.key /etc/openvpn/server/
-cp pki/private/ca.key /etc/openvpn/server/
-cp pki/ca.crt /etc/openvpn/server/
+cp pki/private/server.key /etc/openvpn/
+cp pki/private/ca.key /etc/openvpn/
+cp pki/ca.crt /etc/openvpn/
 
 # Sign the certificate request
 yes "yes" | ./easyrsa sign-req server server
-yes "yes" | cp pki/issued/server.crt /etc/openvpn/server/
+yes "yes" | cp pki/issued/server.crt /etc/openvpn/
 
 # Generate an extra shared secret key
 openvpn --genkey secret pki/ta.key
-cp pki/ta.key /etc/openvpn/server/
+cp pki/ta.key /etc/openvpn/
 
 # Copy the sample config to the OpenVPN directory
-cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /etc/openvpn/server/server.conf
+cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf /etc/openvpn/server.conf
 
 # Adjust the OpenVPN configuration
-sed -i "s/tls-auth ta.key 0/tls-crypt ta.key/" /etc/openvpn/server/server.conf
-sed -i "s/cipher AES-256-CBC/cipher AES-256-GCM\nauth SHA256/" /etc/openvpn/server/server.conf
-sed -i "s/dh dh2048.pem/;dh dh2048.pem\ndh none/" /etc/openvpn/server/server.conf
-sed -i "s/;user nobody/user nobody/" /etc/openvpn/server/server.conf
-sed -i "s/;group nobody/group nogroup/" /etc/openvpn/server/server.conf
+sed -i "s/^;tls-crypt ta.key.*$/tls-crypt ta.key 0/" /etc/openvpn/server/server.conf
+sed -i "s/cipher AES-256-CBC/cipher AES-256-GCM\nauth SHA256/" /etc/openvpn/server.conf
+sed -i "s/dh dh2048.pem/;dh dh2048.pem\ndh none/" /etc/openvpn/server.conf
+# sed -i "s/;user openvpn/user openvpn/" /etc/openvpn/server.conf
+# sed -i "s/;group openvpn/group openvpn/" /etc/openvpn/server.conf
 
 # Allow IP forwarding
 sed -i "s/#net.ipv4.ip_forward/net.ipv4.ip_forward/" /etc/sysctl.conf
@@ -87,8 +87,8 @@ chmod -R 700 ~/client-configs
 mkdir -p ~/client-configs/files
 cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf ~/client-configs/base.conf
 sed -i "s/remote my-server-1 1194/remote ${PUBLIC_IP} 1194/" ~/client-configs/base.conf
-sed -i "s/;user nobody/user nobody/" ~/client-configs/base.conf
-sed -i "s/;group nobody/group nogroup/" ~/client-configs/base.conf
+# sed -i "s/;user openvpn/user openvpn/" ~/client-configs/base.conf
+# sed -i "s/;group openvpn/group openvpn/" ~/client-configs/base.conf
 sed -i "s/ca ca.crt/;ca ca.crt/" ~/client-configs/base.conf
 sed -i "s/cert client.crt/;cert client.crt/" ~/client-configs/base.conf
 sed -i "s/key client.key/;key client.key/" ~/client-configs/base.conf
